@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -28,6 +31,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.Atomos;
 import modelo.Lineas;
 
@@ -57,7 +61,7 @@ public class Prueba extends Application {
     //fin de variables
     @Override
     public void start(Stage primaryStage) {
- 
+        Image textoImagen = new Image("/modelo/Nombre.png");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/interfaz.fxml"));
                 try {
                     Parent root5 = loader.load();
@@ -65,7 +69,9 @@ public class Prueba extends Application {
                     InterfazController controlador5 = loader.getController();
 
                     Scene escena5 = new Scene(root5);
+                    
                     Stage escenario5 = new Stage();
+                    escenario5.initStyle(StageStyle.DECORATED.UNDECORATED);
                     escenario5.initModality(Modality.APPLICATION_MODAL);
                     escenario5.setTitle("Moleculator");
                     escenario5.getIcons().add(new Image("/modelo/unknown.png"));
@@ -82,8 +88,8 @@ public class Prueba extends Application {
         
         Label name = new Label();
 
-        Label datos = new Label("Moleculator - Los wekerekes ");
-        datos.setTextFill(Color.BLACK);
+        ImageView datos = new ImageView(textoImagen);
+        //datos.setTextFill(Color.BLACK);
         Button join = new Button();
         join.setText("Agregar linea");
         join.setOnAction(new EventHandler<ActionEvent>() {
@@ -95,7 +101,9 @@ public class Prueba extends Application {
         Button btn = new Button();
         btn.setText("Agregar Atomo");
         Pane root = new Pane();
-        root.setStyle("-fx-background-color: WHITE;");
+        Pane menu= new Pane();
+        setBackg(menu);
+        root.setStyle("-fx-background-color: #WHITE;");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -108,6 +116,7 @@ public class Prueba extends Application {
 
                     Scene escena4 = new Scene(root4);
                     Stage escenario4 = new Stage();
+                    escenario4.initStyle(StageStyle.DECORATED.UNDECORATED);
                     escenario4.initModality(Modality.APPLICATION_MODAL);
                     escenario4.setTitle("Moleculator");
                     escenario4.getIcons().add(new Image("/modelo/unknown.png"));
@@ -229,6 +238,7 @@ public class Prueba extends Application {
 
                                     Scene escena = new Scene(root2);
                                     Stage escenario = new Stage();
+                                    escenario.initStyle(StageStyle.DECORATED.UNDECORATED);
                                     escenario.initModality(Modality.APPLICATION_MODAL);
                                     escenario.setTitle("Moleculator");
                                     escenario.getIcons().add(new Image("/modelo/unknown.png"));
@@ -266,6 +276,7 @@ public class Prueba extends Application {
 
                                 Scene escena3 = new Scene(root3);
                                 Stage escenario3 = new Stage();
+                                escenario3.initStyle(StageStyle.DECORATED.UNDECORATED);
                                 escenario3.initModality(Modality.APPLICATION_MODAL);
                                 escenario3.setTitle("Moleculator");
                                 escenario3.getIcons().add(new Image("/modelo/unknown.png"));
@@ -357,6 +368,7 @@ public class Prueba extends Application {
 
                                                         Scene escena = new Scene(root2);
                                                         Stage escenario = new Stage();
+                                                        escenario.initStyle(StageStyle.DECORATED.UNDECORATED);
                                                         escenario.initModality(Modality.APPLICATION_MODAL);
                                                         escenario.setTitle("Moleculator");
                                                         escenario.getIcons().add(new Image("/modelo/unknown.png"));
@@ -403,6 +415,7 @@ public class Prueba extends Application {
                                                     Stage escenario3 = new Stage();
                                                     escenario3.initModality(Modality.APPLICATION_MODAL);
                                                     escenario3.setTitle("Moleculator");
+                                                    escenario3.initStyle(StageStyle.DECORATED.UNDECORATED);
                                                     escenario3.getIcons().add(new Image("/modelo/unknown.png"));
                                                     escenario3.setScene(escena3);
                                                     escenario3.showAndWait();
@@ -676,6 +689,7 @@ public class Prueba extends Application {
 
                                         Scene escena2 = new Scene(root2);
                                         Stage escenario2 = new Stage();
+                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
                                         escenario2.initModality(Modality.APPLICATION_MODAL);
                                         escenario2.setTitle("Moleculator");
                                         escenario2.getIcons().add(new Image("/modelo/unknown.png"));
@@ -713,6 +727,7 @@ public class Prueba extends Application {
 
                                         Scene escena2 = new Scene(root2);
                                         Stage escenario2 = new Stage();
+                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
                                         escenario2.initModality(Modality.APPLICATION_MODAL);
                                         escenario2.setTitle("Moleculator");
                                         escenario2.getIcons().add(new Image("/modelo/unknown.png"));
@@ -750,6 +765,7 @@ public class Prueba extends Application {
 
                                         Scene escena2 = new Scene(root2);
                                         Stage escenario2 = new Stage();
+                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
                                         escenario2.initModality(Modality.APPLICATION_MODAL);
                                         escenario2.setTitle("Moleculator");
                                         escenario2.getIcons().add(new Image("/modelo/unknown.png"));
@@ -787,6 +803,7 @@ public class Prueba extends Application {
 
                                         Scene escena2 = new Scene(root2);
                                         Stage escenario2 = new Stage();
+                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
                                         escenario2.initModality(Modality.APPLICATION_MODAL);
                                         escenario2.setTitle("Moleculator");
                                         escenario2.getIcons().add(new Image("/modelo/unknown.png"));
@@ -824,6 +841,7 @@ public class Prueba extends Application {
 
                                         Scene escena2 = new Scene(root2);
                                         Stage escenario2 = new Stage();
+                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
                                         escenario2.initModality(Modality.APPLICATION_MODAL);
                                         escenario2.setTitle("Moleculator");
                                         escenario2.getIcons().add(new Image("/modelo/unknown.png"));
@@ -861,6 +879,7 @@ public class Prueba extends Application {
 
                                         Scene escena2 = new Scene(root2);
                                         Stage escenario2 = new Stage();
+                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
                                         escenario2.initModality(Modality.APPLICATION_MODAL);
                                         escenario2.setTitle("Moleculator");
                                         escenario2.getIcons().add(new Image("/modelo/unknown.png"));
@@ -898,6 +917,7 @@ public class Prueba extends Application {
 
                                         Scene escena2 = new Scene(root2);
                                         Stage escenario2 = new Stage();
+                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
                                         escenario2.initModality(Modality.APPLICATION_MODAL);
                                         escenario2.setTitle("Moleculator");
                                         escenario2.getIcons().add(new Image("/modelo/unknown.png"));
@@ -934,6 +954,7 @@ public class Prueba extends Application {
 
                                         Scene escena2 = new Scene(root2);
                                         Stage escenario2 = new Stage();
+                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
                                         escenario2.initModality(Modality.APPLICATION_MODAL);
                                         escenario2.setTitle("Moleculator");
                                         escenario2.getIcons().add(new Image("/modelo/unknown.png"));
@@ -988,27 +1009,60 @@ public class Prueba extends Application {
                 alert.showAndWait();
             }
         });
-
-        Molec.setLayoutX(850);
-        Molec.setLayoutY(20);
+        //setStylebtn(Molec);
+        Molec.getStylesheets().add("/vista/Botones.css");
+        btn.getStylesheets().add("/vista/Botones.css");
+        join.getStylesheets().add("/vista/Botones.css");
+        Molec.setLayoutX(20);
+        Molec.setLayoutY(300);
         btn.setLayoutX(20);
-        btn.setLayoutY(650);
-        join.setLayoutX(170);
-        join.setLayoutY(650);
-        datos.setLayoutX(780);
-        datos.setLayoutY(660);
+        btn.setLayoutY(100);
+        join.setLayoutX(20);
+        join.setLayoutY(200);
+        datos.setLayoutX(10);
+        datos.setLayoutY(500);
+        datos.setFitHeight(100);
+        datos.setFitWidth(180);
+        /*
         root.getChildren().add(datos);
         root.getChildren().add(join);
         root.getChildren().add(btn);
         root.getChildren().add(Molec);
+        */
+        menu.setPrefSize(200,700);
+        menu.setLayoutX(800);
+        menu.setLayoutY(0);
+        menu.getChildren().add(datos);
+        menu.getChildren().add(join);
+        menu.getChildren().add(btn);
+        menu.getChildren().add(Molec);
+        root.getChildren().add(menu);
         Scene scene = new Scene(root, 1000, 700);
-
+        
+        root.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
+            
+                menu.setPrefSize(200, root.getHeight());
+                menu.setLayoutX(root.getWidth()-200);
+                menu.setLayoutY(0);
+            
+            });
+            
+        
         primaryStage.setTitle("Moleculator");
         primaryStage.getIcons().add(new Image("/modelo/unknown.png"));
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setMinHeight(705);
+        primaryStage.setMinWidth(1005);
+       
     }
 
+   
+    public void setBackg(Pane panel) {
+        panel.setStyle("-fx-background-image: url(\"/modelo/fondo.png\");");
+    }
+    
+    
     public static void main(String[] args) {
         launch(args);
     }

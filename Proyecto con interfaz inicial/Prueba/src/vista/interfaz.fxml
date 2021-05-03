@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="368.0" prefWidth="526.0" style="-fx-background-color: WHITE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="prueba.InterfazController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="368.0" prefWidth="526.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prueba.InterfazController">
    <children>
-      <Pane layoutY="-6.0" prefHeight="86.0" prefWidth="543.0" style="-fx-background-color: #B82815;">
+      <Pane layoutY="-6.0" prefHeight="86.0" prefWidth="543.0" styleClass="bodybg" stylesheets="@fondo.css">
          <children>
             <Label layoutX="179.0" layoutY="24.0" text="Moleculator" textFill="WHITE">
                <font>
@@ -20,6 +19,6 @@
          </children>
       </Pane>
       <ImageView fx:id="imgview" fitHeight="281.0" fitWidth="451.0" layoutX="53.0" layoutY="80.0" pickOnBounds="true" />
-      <Button fx:id="btninicio" layoutX="242.0" layoutY="323.0" mnemonicParsing="false" onAction="#iniciar" text="Iniciar" />
+      <Button fx:id="btninicio" layoutX="235.0" layoutY="303.0" mnemonicParsing="false" onAction="#iniciar" stylesheets="@Botones.css" text="Iniciar" />
    </children>
 </AnchorPane>
