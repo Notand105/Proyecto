@@ -52,6 +52,8 @@ public class VistacuadritolineaController implements Initializable {
 
     @FXML
     private void borrar(ActionEvent event) {
+        Stage escena =  (Stage) this.btnborrar.getScene().getWindow();
+        escena.close();
         erase=true;
         
     }
