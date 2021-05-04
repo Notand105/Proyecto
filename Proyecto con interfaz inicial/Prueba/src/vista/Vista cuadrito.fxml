@@ -10,31 +10,34 @@
 
 <AnchorPane id="AnchorPane" prefHeight="314.0" prefWidth="233.0" styleClass="bodybg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prueba.VistaCuadritoController">
    <children>
-      <TextField fx:id="txtField" layoutX="25.0" layoutY="66.0">
+      <TextField fx:id="txtField" layoutX="26.0" layoutY="70.0" prefHeight="28.0" prefWidth="154.0" styleClass="text-field" stylesheets="@textfield.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </TextField>
-      <Label layoutX="29.0" layoutY="41.0" text="Nombre del Átomo: " textFill="WHITE">
+      <Label layoutX="24.0" layoutY="42.0" text="Nombre del Átomo: " textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <ColorPicker fx:id="clrPicker" editable="true" layoutX="26.0" layoutY="183.0" onAction="#actionpick">
+      <ColorPicker fx:id="clrPicker" layoutX="26.0" layoutY="193.0" onAction="#actionpick" styleClass="picker-color" stylesheets="@colorPick.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ColorPicker>
-      <Label layoutX="25.0" layoutY="156.0" text="Color de Átomo: " textFill="WHITE" />
-      <Button fx:id="readybtn" defaultButton="true" layoutX="83.0" layoutY="229.0" mnemonicParsing="false" onAction="#Boton" stylesheets="@Botones.css" text="Listo">
+      <Label layoutX="27.0" layoutY="165.0" text="Color de Átomo: " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Button fx:id="readybtn" defaultButton="true" layoutX="82.0" layoutY="249.0" mnemonicParsing="false" onAction="#Boton" stylesheets="@Botones.css" text="Listo">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="27.0" layoutY="99.0" text="Color del Texto: " textFill="WHITE">
+      <Label layoutX="35.0" layoutY="98.0" text="Color del Texto: " textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <ColorPicker fx:id="clrpicktext" editable="true" layoutX="24.0" layoutY="125.0" onAction="#clrpicktxt">
+      <ColorPicker fx:id="clrpicktext" layoutX="26.0" layoutY="121.0" onAction="#clrpicktxt" styleClass="picker-color" stylesheets="@colorPick.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

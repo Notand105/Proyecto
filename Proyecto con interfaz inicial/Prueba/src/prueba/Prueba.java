@@ -103,6 +103,7 @@ public class Prueba extends Application {
         btn.setText("Agregar Atomo");
         Pane root = new Pane();
         Pane menu= new Pane();
+        
         setBackg(menu);
         root.setStyle("-fx-background-color: #WHITE;");
         btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -1008,6 +1009,7 @@ public class Prueba extends Application {
                 alert.setTitle("Info");
                 alert.setContentText("Se a creado la molecula " + Nombre.getText());
                 alert.showAndWait();
+                
             }
         });
         //setStylebtn(Molec);

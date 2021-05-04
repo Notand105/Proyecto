@@ -8,12 +8,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="277.0" prefWidth="237.0" styleClass="bodybg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prueba.VistacuadritolineaController">
    <children>
-      <ColorPicker fx:id="clrpicker" layoutX="35.0" layoutY="123.0" />
+      <ColorPicker fx:id="clrpicker" layoutX="49.0" layoutY="110.0" prefWidth="140.0" styleClass="picker-color" stylesheets="@colorPick.css" />
       <Label layoutX="53.0" layoutY="84.0" text="Color de linea: " textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Button fx:id="btn" layoutX="71.0" layoutY="211.0" mnemonicParsing="false" onAction="#click" stylesheets="@Botones.css" text="Listo" />
-      <Button fx:id="btnborrar" layoutX="67.0" layoutY="168.0" mnemonicParsing="false" onAction="#borrar" prefHeight="17.0" prefWidth="74.0" stylesheets="@Botones.css" text="Borrar" />
+      <Button fx:id="btn" layoutX="86.0" layoutY="169.0" mnemonicParsing="false" onAction="#click" stylesheets="@Botones.css" text="Listo" />
+      <Button fx:id="btnborrar" layoutX="82.0" layoutY="216.0" mnemonicParsing="false" onAction="#borrar" prefHeight="17.0" prefWidth="74.0" stylesheets="@Botones.css" text="Borrar" />
    </children>
 </AnchorPane>

@@ -1,0 +1,25 @@
+.picker-color {
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#f9013f 0%, #CA013F 20%, #83011F 100%),
+        linear-gradient(#f9013f, #83011F),
+        radial-gradient(center 50% 0%, radius 100%, rgba(100,100,100,0.9), rgba(255,255,255,0));
+        -fx-text-fill: white;
+        -fx-font-family: "Arial";
+        -fx-text-fill: linear-gradient(white, #d0d0d0);
+        -fx-font-size: 12px;
+        -fx-padding: 5 4 2 4;
+        
+}
+.color-picker .color-picker-label .text {
+    -fx-fill: #ccffcc;
+}
+.picker-color:hover {
+    -fx-background-color: #383838;
+    -fx-scale-y: 1.1;
+}
+
+.picker-color:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}

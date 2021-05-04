@@ -1,0 +1,22 @@
+.choice-box {
+   -fx-background-color: 
+        #090a0c,
+        linear-gradient(#f9013f 0%, #CA013F 20%, #83011F 100%),
+        linear-gradient(#f9013f, #83011F),
+        radial-gradient(center 50% 0%, radius 100%, rgba(100,100,100,0.9), rgba(255,255,255,0));
+  -fx-mark-color: #f9013f; 
+}
+
+.choice-box > .label { -fx-text-fill: white; }
+/* Background color of the whole context menu*/
+.choice-box .context-menu {    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#f9013f 0%, #CA013F 20%, #83011F 100%),
+        linear-gradient(#f9013f, #83011F),
+        radial-gradient(center 50% 0%, radius 100%, rgba(100,100,100,0.9), rgba(255,255,255,0)); }
+/* Focused item background color in the list*/
+.choice-box .menu-item:focused { -fx-background-color: #f9013f; }
+/* Text color of non-focused items in the list*/
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+/* Text color of focused item in the list*/
+.choice-box .menu-item:focused > .label { -fx-text-fill: black; }
