@@ -21,7 +21,9 @@ public class Arco extends Arc {
     }
     
    public Arc get(){
+       
     return arc;
+    
    } 
     
     
