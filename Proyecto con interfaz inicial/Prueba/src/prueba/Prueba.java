@@ -61,6 +61,7 @@ public class Prueba extends Application {
     //fin de variables
     @Override
     public void start(Stage primaryStage) {
+        
         Image textoImagen = new Image("/modelo/Nombre.png");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/interfaz.fxml"));
                 try {
