@@ -34,6 +34,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Atomos;
 import modelo.Lineas;
+import modelo.AbirVentanas;
+import modelo.Botonesevent;
+import modelo.Eventospanel;
 
 public class Prueba extends Application {
 
@@ -63,29 +66,13 @@ public class Prueba extends Application {
     public void start(Stage primaryStage) {
         
         Image textoImagen = new Image("/modelo/Nombre.png");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/interfaz.fxml"));
-                try {
-                    Parent root5 = loader.load();
-
-                    InterfazController controlador5 = loader.getController();
-
-                    Scene escena5 = new Scene(root5);
-                    
-                    Stage escenario5 = new Stage();
-                    escenario5.initStyle(StageStyle.DECORATED.UNDECORATED);
-                    escenario5.initModality(Modality.APPLICATION_MODAL);
-                    escenario5.setTitle("Moleculator");
-                    escenario5.getIcons().add(new Image("/modelo/unknown.png"));
-                    escenario5.setScene(escena5);
-                    escenario5.showAndWait();
-
-                    //unir=controlador.unirconfirm();
-                } catch (IOException ex) {
-                    Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        AbirVentanas ventanas= new AbirVentanas();
+        Eventospanel eventospanel= new Eventospanel();
+        Botonesevent botonese= new Botonesevent();
         
-        
-        
+        //Llamar a la funcion que abre la ventanade inicio del programa
+        ventanas.Inicio();
+       
         
         Label name = new Label();
 
@@ -105,32 +92,12 @@ public class Prueba extends Application {
         Pane menu= new Pane();
         
         setBackg(menu);
-        root.setStyle("-fx-background-color: #WHITE;");
+        //root.setStyle("-fx-background-color: #WHITE;");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/VistaEnlaces.fxml"));
-                try {
-                    Parent root4 = loader.load();
-
-                    VistaEnlacesController controlador4 = loader.getController();
-
-                    Scene escena4 = new Scene(root4);
-                    Stage escenario4 = new Stage();
-                    escenario4.initStyle(StageStyle.DECORATED.UNDECORATED);
-                    escenario4.initModality(Modality.APPLICATION_MODAL);
-                    escenario4.setTitle("Moleculator");
-                    escenario4.getIcons().add(new Image("/modelo/unknown.png"));
-                    escenario4.setScene(escena4);
-                    escenario4.showAndWait();
-
-                    nenlaces = controlador4.getNumero();
-
-                    //unir=controlador.unirconfirm();
-                } catch (IOException ex) {
-                    Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                nenlaces=ventanas.Nenlaces();
+                
                 //
                 //enlaces para un atomo principal
 
@@ -296,231 +263,19 @@ public class Prueba extends Application {
 
                                         j = j + 1;
                                     }
-                                    root.getChildren().remove(arco);
-                                    root.getChildren().remove(label);
-                                    root.getChildren().remove(line);
-                                    root.getChildren().remove(en1);
-                                    root.getChildren().remove(en2);
-                                    root.getChildren().remove(en3);
-                                    root.getChildren().remove(en4);
-                                    root.getChildren().remove(en5);
-                                    root.getChildren().remove(en6);
-                                    root.getChildren().remove(en7);
-                                    root.getChildren().remove(en8);
-                                    root.getChildren().remove(l1);
-                                    root.getChildren().remove(l2);
-                                    root.getChildren().remove(l3);
-                                    root.getChildren().remove(l4);
-                                    root.getChildren().remove(l5);
-                                    root.getChildren().remove(l6);
-                                    root.getChildren().remove(l7);
-                                    root.getChildren().remove(l8);
+                                    eventospanel.borrar(root, arco, en1, en2, en3, en4, en5, en6, en7, en8, l1, l2, l3, l4, l5, l6, l7, l8, label, line);
 
                                     borrar = false;
                                 }
                                 
   
                                 if (clonar) {
-                                    if (l1.isVisible()) {
-                                        clonar = false;
-                                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                                        alert.setHeaderText(null);
-                                        alert.setTitle("Error");
-                                        alert.setContentText("No se puede clonar un atomo con enlaces porfavor crea otro desde cero");
-                                        alert.showAndWait();
-                                    }
-                                    else{
-                                        Arc arco2 = new Arc(50, 50, 20, 20, 0, 360);
-
-                                    Label label2 = new Label(label.getText());
-                                    label2.setTextFill(label.getTextFill());
-                                    arco2.setLayoutX(arco.getLayoutX() + 100);
-                                    arco2.setLayoutY(arco.getLayoutY());
-                                    arco2.setFill(Color.WHITE);
-                                    arco2.setStroke(arco.getStroke());
-                                    arco2.setStrokeWidth(3);
-                                    label2.setLayoutX(arco2.getLayoutX() + 40);
-                                    label2.setLayoutY(arco2.getLayoutY() + 40);
-                                    Line line2 = new Line();
-                                    line2.setVisible(false);
-                                    if (line.isVisible()) {
-                                        line2.setVisible(true);
-                                        line2.setStartX(arco2.getLayoutX() + 50);
-                                        line2.setStartY(arco2.getLayoutY() + 50);
-                                        line2.setEndX(arco2.getLayoutX() + 50);
-                                        line2.setEndY(arco2.getLayoutY() + 100);
-                                        line2.setStrokeWidth(4);
-                                        line2.setStroke(line.getStroke());
-                                    }
-
-                                    atom.MovAtomo(arco2, label2, line2, atomos, en21, en22, en23, en24, en25, en26, en27, en28, l1, l2, l3, l4, l5, l6, l7, l8);
-                                    lineas.MovLinea(line2, arco2);
-                                    // los mismos eventos que 
-                                    arco2.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                        @Override
-                                        public void handle(MouseEvent mouseEvent) {
-                                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                                if (mouseEvent.getClickCount() == 2) {
-                                                    //doble click evento
-                                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/Vista cuadrito.fxml"));
-                                                    try {
-                                                        Parent root2 = loader.load();
-
-                                                        VistaCuadritoController controlador = loader.getController();
-
-                                                        Scene escena = new Scene(root2);
-                                                        Stage escenario = new Stage();
-                                                        escenario.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                                        escenario.initModality(Modality.APPLICATION_MODAL);
-                                                        escenario.setTitle("Moleculator");
-                                                        escenario.getIcons().add(new Image("/modelo/unknown.png"));
-                                                        escenario.setScene(escena);
-                                                        escenario.showAndWait();
-
-                                                        //unir=controlador.unirconfirm();
-                                                        color = controlador.getColor();
-                                                        label2.setText(controlador.getnombre());
-                                                        names.add(label2);
-                                                        j = 0;
-                                                        Nombre.setText("");
-                                                        while (j < names.size()) {
-                                                            Nombre.setText(Nombre.getText() + names.get(j).getText());
-
-                                                            j = j + 1;
-                                                        }
-                                                        arco2.setStroke(color);
-                                                        en21.setStroke(color);
-                                                        en22.setStroke(color);
-                                                        en23.setStroke(color);
-                                                        en24.setStroke(color);
-                                                        en25.setStroke(color);
-                                                        en26.setStroke(color);
-                                                        en27.setStroke(color);
-                                                        en28.setStroke(color);
-                                                        color2 = controlador.getColortxt();
-                                                        label2.setTextFill(color2);
-
-                                                    } catch (IOException ex) {
-                                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                                    }
-
-                                                }
-
-                                            } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-                                                FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/vista/VistaCD.fxml"));
-                                                try {
-                                                    Parent root3 = loader3.load();
-
-                                                    VistaCDController controlador3 = loader3.getController();
-
-                                                    Scene escena3 = new Scene(root3);
-                                                    Stage escenario3 = new Stage();
-                                                    escenario3.initModality(Modality.APPLICATION_MODAL);
-                                                    escenario3.setTitle("Moleculator");
-                                                    escenario3.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                                    escenario3.getIcons().add(new Image("/modelo/unknown.png"));
-                                                    escenario3.setScene(escena3);
-                                                    escenario3.showAndWait();
-
-                                                    borrar = controlador3.getborrar();
-                                                    clonar = controlador3.getclonar();
-                                                    if (borrar) {
-                                                        names.remove(label2.getText());
-                                                        j = 0;
-                                                        Nombre.setText("");
-                                                        while (j < names.size()) {
-                                                            Nombre.setText(Nombre.getText() + names.get(j).getText());
-
-                                                            j = j + 1;
-                                                        }
-                                                        root.getChildren().remove(arco2);
-                                                        root.getChildren().remove(label2);
-                                                        root.getChildren().remove(line2);
-                                                        root.getChildren().remove(en21);
-                                                        root.getChildren().remove(en22);
-                                                        root.getChildren().remove(en23);
-                                                        root.getChildren().remove(en24);
-                                                        root.getChildren().remove(en25);
-                                                        root.getChildren().remove(en26);
-                                                        root.getChildren().remove(en27);
-                                                        root.getChildren().remove(en28);
-                                                        borrar = false;
-                                                    }
-                                                    if (clonar) {
-                                                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                                                        alert.setHeaderText(null);
-                                                        alert.setTitle("Error");
-                                                        alert.setContentText("No se puede clonar un clon");
-                                                        alert.showAndWait();
-                                                    }
-                                                } catch (IOException ex) {
-                                                    Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                                }
-                                            }
-                                        }
-                                    });
-                                    j = 0;
-                                    while (j < nenlaces) {
-                                        if (j == 0) {
-                                            en21.setLayoutX(arco2.getLayoutX() + 25);
-                                            en21.setLayoutY(arco2.getLayoutY() + 70);
-
-                                            en21.setFill(Color.WHITE);
-                                            en21.setVisible(true);
-                                        } else if (j == 1) {
-                                            en22.setLayoutX(arco2.getLayoutX() + 25);
-                                            en22.setLayoutY(arco2.getLayoutY() + 2);
-
-                                            en22.setFill(Color.WHITE);
-                                            en22.setVisible(true);
-                                        } else if (j == 2) {
-                                            en23.setLayoutX(arco2.getLayoutX() + 45);
-                                            en23.setLayoutY(arco2.getLayoutY() + 70);
-
-                                            en23.setFill(Color.WHITE);
-                                            en23.setVisible(true);
-                                        } else if (j == 3) {
-                                            en24.setLayoutX(arco2.getLayoutX() + 45);
-                                            en24.setLayoutY(arco2.getLayoutY() + 2);
-
-                                            en24.setFill(Color.WHITE);
-                                            en24.setVisible(true);
-                                        } else if (j == 4) {
-                                            en25.setLayoutX(arco2.getLayoutX() - 5);
-                                            en25.setLayoutY(arco2.getLayoutY() + 25);
-
-                                            en25.setFill(Color.WHITE);
-                                            en25.setVisible(true);
-                                        } else if (j == 5) {
-                                            en26.setLayoutX(arco2.getLayoutX() + 70);
-                                            en26.setLayoutY(arco2.getLayoutY() + 25);
-
-                                            en26.setFill(Color.WHITE);
-                                            en26.setVisible(true);
-                                        } else if (j == 6) {
-                                            en27.setLayoutX(arco2.getLayoutX() - 5);
-                                            en27.setLayoutY(arco2.getLayoutY() + 45);
-
-                                            en27.setFill(Color.WHITE);
-                                            en27.setVisible(true);
-                                        } else if (j == 7) {
-                                            en28.setLayoutX(arco2.getLayoutX() + 70);
-                                            en28.setLayoutY(arco2.getLayoutY() + 45);
-                                            en28.setFill(Color.WHITE);
-
-                                            en28.setVisible(true);
-                                        }
-                                        j = j + 1;
-
-                                    }
-                                    atomos.add(arco2);
-                                    if (nenlaces >= 1) {
-                                        root.getChildren().addAll(en21, en22, en23, en24, en25, en26, en27, en28);
-                                    }
-                                    root.getChildren().addAll(line2, arco2, label2);
-                                    clonar = false;
-                                    }
+                                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                     
+                                    alert.setHeaderText(null);
+                                    alert.setTitle("Error");
+                                    alert.setContentText("La funcion clonar esta desactivada de momento");
+                                    alert.showAndWait();
                                 }
                             } catch (IOException ex) {
                                 Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
@@ -667,319 +422,16 @@ public class Prueba extends Application {
                         root.getChildren().add(l8);
                         lineas.MovLinea(l8, arco);
                     }
-                    /*
-                    line.setVisible(true);
-                    line.setStartX(arco.getLayoutX() + 20);
-                    line.setStartY(arco.getLayoutY() + 100);
-                    line.setEndX(arco.getLayoutX() + 200);
-                    line.setEndY(arco.getLayoutY() + 200);
-                    line.setStrokeWidth(4);
-                    root.getChildren().add(line);
-                    lineas.MovLinea(line, arco);
-                     */
-                    l1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                if (mouseEvent.getClickCount() == 2) {
-                                    //doble click evento
-                                    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/vistacuadritolinea.fxml"));
-                                    try {
-                                        Parent root2 = loader2.load();
+                    
+                    lineas.eventosLinea(l1, root);
+                    lineas.eventosLinea(l2, root);
+                    lineas.eventosLinea(l3, root);
+                    lineas.eventosLinea(l4, root);
+                    lineas.eventosLinea(l5, root);
+                    lineas.eventosLinea(l6, root);
+                    lineas.eventosLinea(l7, root);
+                    lineas.eventosLinea(l8, root);
 
-                                        VistacuadritolineaController controlador2 = loader2.getController();
-
-                                        Scene escena2 = new Scene(root2);
-                                        Stage escenario2 = new Stage();
-                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                        escenario2.initModality(Modality.APPLICATION_MODAL);
-                                        escenario2.setTitle("Moleculator");
-                                        escenario2.getIcons().add(new Image("/modelo/unknown.png"));
-                                        escenario2.setScene(escena2);
-                                        escenario2.showAndWait();
-
-                                        //unir=controlador.unirconfirm();
-                                        color3 = controlador2.getColorlinea();
-                                        l1.setStroke(color3);
-                                        if (controlador2.borra()) {
-                                            root.getChildren().remove(l1);
-                                        }
-
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    });
-                    l2.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                if (mouseEvent.getClickCount() == 2) {
-                                    //doble click evento
-                                    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/vistacuadritolinea.fxml"));
-                                    try {
-                                        Parent root2 = loader2.load();
-
-                                        VistacuadritolineaController controlador2 = loader2.getController();
-
-                                        Scene escena2 = new Scene(root2);
-                                        Stage escenario2 = new Stage();
-                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                        escenario2.initModality(Modality.APPLICATION_MODAL);
-                                        escenario2.setTitle("Moleculator");
-                                        escenario2.getIcons().add(new Image("/modelo/unknown.png"));
-                                        escenario2.setScene(escena2);
-                                        escenario2.showAndWait();
-
-                                        //unir=controlador.unirconfirm();
-                                        color3 = controlador2.getColorlinea();
-                                        l2.setStroke(color3);
-                                        if (controlador2.borra()) {
-                                            root.getChildren().remove(l2);
-                                        }
-
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    });
-                    l3.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                if (mouseEvent.getClickCount() == 2) {
-                                    //doble click evento
-                                    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/vistacuadritolinea.fxml"));
-                                    try {
-                                        Parent root2 = loader2.load();
-
-                                        VistacuadritolineaController controlador2 = loader2.getController();
-
-                                        Scene escena2 = new Scene(root2);
-                                        Stage escenario2 = new Stage();
-                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                        escenario2.initModality(Modality.APPLICATION_MODAL);
-                                        escenario2.setTitle("Moleculator");
-                                        escenario2.getIcons().add(new Image("/modelo/unknown.png"));
-                                        escenario2.setScene(escena2);
-                                        escenario2.showAndWait();
-
-                                        //unir=controlador.unirconfirm();
-                                        color3 = controlador2.getColorlinea();
-                                        l3.setStroke(color3);
-                                        if (controlador2.borra()) {
-                                            root.getChildren().remove(l3);
-                                        }
-
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    });
-                    l4.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                if (mouseEvent.getClickCount() == 2) {
-                                    //doble click evento
-                                    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/vistacuadritolinea.fxml"));
-                                    try {
-                                        Parent root2 = loader2.load();
-
-                                        VistacuadritolineaController controlador2 = loader2.getController();
-
-                                        Scene escena2 = new Scene(root2);
-                                        Stage escenario2 = new Stage();
-                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                        escenario2.initModality(Modality.APPLICATION_MODAL);
-                                        escenario2.setTitle("Moleculator");
-                                        escenario2.getIcons().add(new Image("/modelo/unknown.png"));
-                                        escenario2.setScene(escena2);
-                                        escenario2.showAndWait();
-
-                                        //unir=controlador.unirconfirm();
-                                        color3 = controlador2.getColorlinea();
-                                        l4.setStroke(color3);
-                                        if (controlador2.borra()) {
-                                            root.getChildren().remove(l4);
-                                        }
-
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    });
-                    l5.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                if (mouseEvent.getClickCount() == 2) {
-                                    //doble click evento
-                                    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/vistacuadritolinea.fxml"));
-                                    try {
-                                        Parent root2 = loader2.load();
-
-                                        VistacuadritolineaController controlador2 = loader2.getController();
-
-                                        Scene escena2 = new Scene(root2);
-                                        Stage escenario2 = new Stage();
-                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                        escenario2.initModality(Modality.APPLICATION_MODAL);
-                                        escenario2.setTitle("Moleculator");
-                                        escenario2.getIcons().add(new Image("/modelo/unknown.png"));
-                                        escenario2.setScene(escena2);
-                                        escenario2.showAndWait();
-
-                                        //unir=controlador.unirconfirm();
-                                        color3 = controlador2.getColorlinea();
-                                        l5.setStroke(color3);
-                                        if (controlador2.borra()) {
-                                            root.getChildren().remove(l5);
-                                        }
-
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    });
-                    l6.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                if (mouseEvent.getClickCount() == 2) {
-                                    //doble click evento
-                                    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/vistacuadritolinea.fxml"));
-                                    try {
-                                        Parent root2 = loader2.load();
-
-                                        VistacuadritolineaController controlador2 = loader2.getController();
-
-                                        Scene escena2 = new Scene(root2);
-                                        Stage escenario2 = new Stage();
-                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                        escenario2.initModality(Modality.APPLICATION_MODAL);
-                                        escenario2.setTitle("Moleculator");
-                                        escenario2.getIcons().add(new Image("/modelo/unknown.png"));
-                                        escenario2.setScene(escena2);
-                                        escenario2.showAndWait();
-
-                                        //unir=controlador.unirconfirm();
-                                        color3 = controlador2.getColorlinea();
-                                        l6.setStroke(color3);
-                                        if (controlador2.borra()) {
-                                            root.getChildren().remove(l6);
-                                        }
-
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    });
-                    l7.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                if (mouseEvent.getClickCount() == 2) {
-                                    //doble click evento
-                                    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/vistacuadritolinea.fxml"));
-                                    try {
-                                        Parent root2 = loader2.load();
-
-                                        VistacuadritolineaController controlador2 = loader2.getController();
-
-                                        Scene escena2 = new Scene(root2);
-                                        Stage escenario2 = new Stage();
-                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                        escenario2.initModality(Modality.APPLICATION_MODAL);
-                                        escenario2.setTitle("Moleculator");
-                                        escenario2.getIcons().add(new Image("/modelo/unknown.png"));
-                                        escenario2.setScene(escena2);
-                                        escenario2.showAndWait();
-
-                                        //unir=controlador.unirconfirm();
-                                        color3 = controlador2.getColorlinea();
-                                        l7.setStroke(color3);
-                                        if (controlador2.borra()) {
-                                            root.getChildren().remove(l7);
-                                        }
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    });
-                    l8.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                                if (mouseEvent.getClickCount() == 2) {
-                                    //doble click evento
-                                    FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/vista/vistacuadritolinea.fxml"));
-                                    try {
-                                        Parent root2 = loader2.load();
-
-                                        VistacuadritolineaController controlador2 = loader2.getController();
-
-                                        Scene escena2 = new Scene(root2);
-                                        Stage escenario2 = new Stage();
-                                        escenario2.initStyle(StageStyle.DECORATED.UNDECORATED);
-                                        escenario2.initModality(Modality.APPLICATION_MODAL);
-                                        escenario2.setTitle("Moleculator");
-                                        escenario2.getIcons().add(new Image("/modelo/unknown.png"));
-                                        escenario2.setScene(escena2);
-                                        escenario2.showAndWait();
-
-                                        //unir=controlador.unirconfirm();
-                                        color3 = controlador2.getColorlinea();
-                                        l8.setStroke(color3);
-                                        if (controlador2.borra()) {
-                                            root.getChildren().remove(l8);
-                                        }
-
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(Prueba.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    });
                 }
                 //Inicio del codifo para mover los atomos
                 atom.MovAtomo(arco, label, line, atomos, en1, en2, en3, en4, en5, en6, en7, en8, l1, l2, l3, l4, l5, l6, l7, l8);
@@ -1000,18 +452,7 @@ public class Prueba extends Application {
         Button Molec = new Button();
         Molec.setText("Crear molecula");
 
-        Molec.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Info");
-                alert.setContentText("Se a creado la molecula " + Nombre.getText());
-                alert.showAndWait();
-                
-            }
-        });
+        botonese.molecbtn(Molec, Nombre);
         //setStylebtn(Molec);
         Molec.getStylesheets().add("/vista/Botones.css");
         btn.getStylesheets().add("/vista/Botones.css");
@@ -1041,14 +482,8 @@ public class Prueba extends Application {
         menu.getChildren().add(Molec);
         root.getChildren().add(menu);
         Scene scene = new Scene(root, 1000, 700);
-        
-        root.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
-            
-                menu.setPrefSize(200, root.getHeight());
-                menu.setLayoutX(root.getWidth()-200);
-                menu.setLayoutY(0);
-            
-            });
+        eventospanel.doubleclick(root);
+        eventospanel.reposicionar(root, menu);
             
         
         primaryStage.setTitle("Moleculator");
