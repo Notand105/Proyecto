@@ -13,6 +13,14 @@ import prueba.Prueba;
  * @author Fernando
  */
 public class Atomos {
+     class Measure {
+                    double x, y;
+
+                 public Measure() {
+                      x = 0; y = 0;
+            }
+        }
+
         Line punto= new Line();
        public void MovAtomo(Node arco, Node label, Line line,ArrayList<Arc> atomos,Node en1,Node en2,Node en3,Node en4,Node en5,Node en6,Node en7,Node en8, Line l1, Line l2, Line l3, Line l4, Line l5, Line l6, Line l7, Line l8) {
 
@@ -86,12 +94,7 @@ public class Atomos {
             arco.setOnMouseEntered(mouseEvent -> arco.setCursor(Cursor.HAND));
         }
          
+       
+       
                 
-                class Measure {
-                    double x, y;
-
-                 public Measure() {
-                      x = 0; y = 0;
-            }
-        }
-}
+}         
