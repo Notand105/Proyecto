@@ -46,7 +46,7 @@ public class Eventospanel {
                 });
     }
     
-    public void borrar(Pane root,Arc arco,Arc en1,Arc en2,Arc en3,Arc en4,Arc en5,Arc en6,Arc en7,Arc en8,Line l1,Line l2,Line l3,Line l4,Line l5,Line l6,Line l7,Line l8,Label label,Line line){
+    public void borrar(Pane root,Arc arco,Arc en1,Arc en2,Arc en3,Arc en4,Arc en5,Arc en6,Arc en7,Arc en8,Label label,Line line){
         root.getChildren().remove(arco);
                                     root.getChildren().remove(label);
                                     root.getChildren().remove(line);
@@ -58,14 +58,7 @@ public class Eventospanel {
                                     root.getChildren().remove(en6);
                                     root.getChildren().remove(en7);
                                     root.getChildren().remove(en8);
-                                    root.getChildren().remove(l1);
-                                    root.getChildren().remove(l2);
-                                    root.getChildren().remove(l3);
-                                    root.getChildren().remove(l4);
-                                    root.getChildren().remove(l5);
-                                    root.getChildren().remove(l6);
-                                    root.getChildren().remove(l7);
-                                    root.getChildren().remove(l8);
+                                    
         
     
     

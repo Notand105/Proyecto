@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -36,15 +37,29 @@ public class VistaCuadritoController implements Initializable {
     @FXML
     private ColorPicker clrpicktext;
     private Color color2;
+    @FXML
+    private ChoiceBox<String> choicebox;
+    private int numero;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        clrPicker.setValue(Color.BLACK);
+        clrpicktext.setValue(Color.BLACK);
+        choicebox.setValue("20");
+        choicebox.getItems().add("20");
+        choicebox.getItems().add("25");
+        choicebox.getItems().add("30");
+        choicebox.getItems().add("35");
+        choicebox.getItems().add("40");
+        choicebox.getItems().add("45");
+        choicebox.getItems().add("50");
+        choicebox.getItems().add("60");
     }    
 
     @FXML
     private void Boton(ActionEvent event) {
         nombre= this.txtField.getText();   
+        numero=Integer.parseInt(choicebox.getValue());
         Stage escena =  (Stage) this.readybtn.getScene().getWindow();
         escena.close();
     }
@@ -71,5 +86,8 @@ public class VistaCuadritoController implements Initializable {
     public boolean unirconfirm(){
         return confirm;
     }
+    public double size(){
     
+    return numero;
+    }
 }
