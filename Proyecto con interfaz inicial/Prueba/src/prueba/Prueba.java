@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -38,16 +39,21 @@ import modelo.AbirVentanas;
 import modelo.Botonesevent;
 import modelo.Enlaces;
 import modelo.Eventospanel;
-
+import modelo.Objet;
 public class Prueba extends Application {
 
     //variables
+     ArrayList<Objet> Molecula = new ArrayList<Objet>();
+      ArrayList<Objet> aUnir = new ArrayList<Objet>();
+    ArrayList<Objet> AtomosGroup = new ArrayList<Objet>();
+    ArrayList<Objet> AtomosGroup2 = new ArrayList<Objet>();
     ArrayList<Label> names = new ArrayList();
     ArrayList<Arc> atomos = new ArrayList();
     Lineas lineas = new Lineas();
     Atomos atom = new Atomos();
     boolean j1 = false;
     int orden = 0;
+    int cont=0;
     boolean unir = false;
     boolean borrar = false, clonar = false;
     int ndeAtomos = 0;
@@ -152,11 +158,13 @@ public class Prueba extends Application {
                     posiY = 0;
                 }
                 posiY += 40;
-
+                Objet atomoPE= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line);
+                AtomosGroup.add(atomoPE);
                 //Inicio del evento de doble click en el arco
                 arco.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
-                    public void handle(MouseEvent mouseEvent) {
+                    public void handle(MouseEvent mouseEvent) {Objet atomoPE= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line);
+                
                         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                             if (mouseEvent.getClickCount() == 2) {
                                 //doble click evento
@@ -215,10 +223,11 @@ public class Prueba extends Application {
                                 escenario3.getIcons().add(new Image("/modelo/unknown.png"));
                                 escenario3.setScene(escena3);
                                 escenario3.showAndWait();
-
+                                Objet atomoPE2= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line);
                                 borrar = controlador3.getborrar();
                                 clonar = controlador3.getclonar();
                                 if (borrar) {
+                                    aUnir.remove(atomoPE);
                                     names.remove(label.getText());
                                     j = 0;
                                     Nombre.setText("");
@@ -227,11 +236,58 @@ public class Prueba extends Application {
 
                                         j = j + 1;
                                     }
+                                    if(AtomosGroup2.size()>0){
+                                        int cont2=0;
+                                        while (cont2<AtomosGroup2.size()){
+                            
+                                            eventospanel.borrar(root, AtomosGroup2.get(cont2).getArco(), AtomosGroup2.get(cont2).getEn1(), AtomosGroup2.get(cont2).getEn2(), AtomosGroup2.get(cont2).getEn3(), AtomosGroup2.get(cont2).getEn4(), AtomosGroup2.get(cont2).getEn5(), AtomosGroup2.get(cont2).getEn6(), AtomosGroup2.get(cont2).getEn7(), AtomosGroup2.get(cont2).getEn8(), AtomosGroup2.get(cont2).getLabel(), AtomosGroup2.get(cont2).getLine());
+                              
+                                            cont2=cont2+1;
+                                        }
+                                        
+                                        AtomosGroup2.clear();
+                                    
+                                    }
                                     eventospanel.borrar(root, arco, en1, en2, en3, en4, en5, en6, en7, en8, label, line);
 
                                     borrar = false;
                                 }
+                                
+                                if(controlador3.getGroup()){                                  
+                                    cont=0;
+                                    
+                                    AtomosGroup2.add(atomoPE2);
+                                    while (cont<AtomosGroup2.size()){
+                                    AtomosGroup2.get(cont).getArco().setStroke(Color.BLUE);
+                                    cont=cont+1;
+                                    }
+                                    atom.MovGroup(arco, AtomosGroup2);
+                                }
+                                if(controlador3.getDGroup()){
+                                    int c3=0;
+                                    while (c3<AtomosGroup2.size()){
+                                        AtomosGroup2.get(c3).getArco().setStroke(Color.BLACK);
+                                        AtomosGroup2.remove(atomoPE2);
+                                        c3=c3+1;
+                                    }
+                                    AtomosGroup2.clear();
+                                    int c4=0;
+                                    while (c4<AtomosGroup.size()){
+                                       atom.MovAtomo(AtomosGroup.get(c4).getArco(), AtomosGroup.get(c4).getLabel(), AtomosGroup.get(c4).getLine() ,AtomosGroup.get(c4).getEn1(), AtomosGroup.get(c4).getEn2(), AtomosGroup.get(c4).getEn3(), AtomosGroup.get(c4).getEn4(), AtomosGroup.get(c4).getEn5(), AtomosGroup.get(c4).getEn6(), AtomosGroup.get(c4).getEn7(), AtomosGroup.get(c4).getEn8());
 
+                                        c4=c4+1;
+                                    }
+                                    //atom.MovAtomo(atomoPE2.getArco(), atomoPE2.getLabel(), atomoPE2.getLine() ,atomoPE2.getEn1(), atomoPE2.getEn2(), atomoPE2.getEn3(), atomoPE2.getEn4(), atomoPE2.getEn5(), atomoPE2.getEn6(), atomoPE2.getEn7(), atomoPE2.getEn8());
+                                }
+                                if(controlador3.getUnir()){
+                                    if(!(aUnir.contains(atomoPE))){
+                                        aUnir.add(atomoPE);
+                                    }
+                                    
+                               
+                                    eventospanel.union(root, aUnir);
+                                    
+                                }
                                 if (clonar) {
                                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
@@ -326,7 +382,7 @@ public class Prueba extends Application {
         Button Molec = new Button();
         Molec.setText("Crear molecula");
 
-        botonese.molecbtn(Molec, Nombre);
+        botonese.molecbtn(Molec, Nombre,aUnir);
         //setStylebtn(Molec);
         Molec.getStylesheets().add("/vista/Botones.css");
         btn.getStylesheets().add("/vista/Botones.css");

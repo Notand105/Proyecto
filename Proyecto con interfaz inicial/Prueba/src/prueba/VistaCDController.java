@@ -27,6 +27,15 @@ public class VistaCDController implements Initializable {
     
     private boolean erase=false;
     private boolean clone=false;
+    private boolean group=false;
+    private boolean Dgroup=false;
+    private boolean unir=false;
+    @FXML
+    private Button btnGroup;
+    @FXML
+    private Button btnDesgr;
+    @FXML
+    private Button btnUnir;
     /**
      * Initializes the controller class.
      */
@@ -41,19 +50,49 @@ public class VistaCDController implements Initializable {
         Stage escena =  (Stage) this.borrarbtn.getScene().getWindow();
         escena.close();
     }
-
+   
     @FXML
     private void clonar(ActionEvent event) {
         this.clone=true;
         Stage escena =  (Stage) this.clonebtn.getScene().getWindow();
         escena.close();
     }
-    
+    public boolean getGroup(){
+        return group;
+    }
+    public boolean getDGroup(){
+        return Dgroup;
+    }
     public boolean getborrar(){
         return erase;
     }
     public boolean getclonar(){
         return clone;
+    }
+    public boolean getUnir(){
+        return unir;
+    }
+    
+
+    @FXML
+    private void clickGroup(ActionEvent event) {
+        this.group=true;
+        Stage escena =  (Stage) this.btnGroup.getScene().getWindow();
+        escena.close();
+    }
+
+    @FXML
+    private void clickdesa(ActionEvent event) {
+        this.Dgroup=true;
+        Stage escena =  (Stage) this.btnDesgr.getScene().getWindow();
+        escena.close();
+    }
+
+    @FXML
+    private void clickUni(ActionEvent event) {
+        this.unir=true;
+        Stage escena =  (Stage) this.btnUnir.getScene().getWindow();
+        escena.close();
     }
     
     

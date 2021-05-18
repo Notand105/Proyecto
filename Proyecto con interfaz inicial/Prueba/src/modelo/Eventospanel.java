@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
@@ -22,6 +23,7 @@ import javafx.stage.StageStyle;
 import prueba.Prueba;
 import prueba.VistaCDController;
 import prueba.VistaCuadritoController;
+import modelo.Objet;
 
 public class Eventospanel {
 
@@ -266,6 +268,25 @@ public class Eventospanel {
         root.getChildren().remove(en7);
         root.getChildren().remove(en8);
 
+    }
+    
+    public void union(Pane root, ArrayList<Objet> aUnir) {
+
+        root.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
+            if(aUnir.size()==2){
+                double x1=aUnir.get(0).getEn1().getLayoutX();
+                double y1=aUnir.get(0).getEn1().getLayoutY();
+                double x2=aUnir.get(1).getEn1().getLayoutX();
+                double y2=aUnir.get(1).getEn1().getLayoutY();
+                Line linea=new Line();
+                linea.setStartX(x1);
+                linea.setStartY(x2);
+                linea.setEndX(x2);
+                linea.setEndY(y2);
+                
+            }
+            
+        });
     }
 
 }
