@@ -68,6 +68,7 @@ public class Prueba extends Application {
     int nenlaces = 0;
     int j = 0;
     int Tamaño;
+    int idnum=0;
     //fin de variables
     @Override
     public void start(Stage primaryStage) {
@@ -103,7 +104,7 @@ public class Prueba extends Application {
             @Override
             public void handle(ActionEvent event) {
                 nenlaces = ventanas.Nenlaces();
-
+                
                 //
                 //enlaces para un atomo principal
                 Arc en1 = new Arc(15, 15, 5, 5, 0, 360);
@@ -137,6 +138,7 @@ public class Prueba extends Application {
                 en6.setVisible(false);
                 en7.setVisible(false);
                 en8.setVisible(false);
+                
                 //visibilidad enlaces clonados
 
                 //visibilidad enlaces
@@ -145,6 +147,7 @@ public class Prueba extends Application {
                 Line line = new Line();
                 line.setVisible(false);
                 Arc arco = new Arc(50, 50, 20, 20, 0, 360);
+                
                 Label label = new Label("");
                 arco.setLayoutX(posiX);
                 arco.setLayoutY(posiY);
@@ -158,12 +161,13 @@ public class Prueba extends Application {
                     posiY = 0;
                 }
                 posiY += 40;
-                Objet atomoPE= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line);
+                idnum+=1;
+                Objet atomoPE= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line,idnum);
                 AtomosGroup.add(atomoPE);
                 //Inicio del evento de doble click en el arco
                 arco.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
-                    public void handle(MouseEvent mouseEvent) {Objet atomoPE= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line);
+                    public void handle(MouseEvent mouseEvent) {Objet atomoPE= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line,idnum);
                 
                         if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                             if (mouseEvent.getClickCount() == 2) {
@@ -223,11 +227,12 @@ public class Prueba extends Application {
                                 escenario3.getIcons().add(new Image("/modelo/unknown.png"));
                                 escenario3.setScene(escena3);
                                 escenario3.showAndWait();
-                                Objet atomoPE2= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line);
+                                Objet atomoPE2= new Objet(arco, en1, en2, en3, en4, en5, en6, en7, en8,label,line,idnum);
                                 borrar = controlador3.getborrar();
                                 clonar = controlador3.getclonar();
                                 if (borrar) {
-                                    aUnir.remove(atomoPE);
+                                    aUnir.remove( atomoPE);
+                                    
                                     names.remove(label.getText());
                                     j = 0;
                                     Nombre.setText("");
@@ -280,11 +285,19 @@ public class Prueba extends Application {
                                     //atom.MovAtomo(atomoPE2.getArco(), atomoPE2.getLabel(), atomoPE2.getLine() ,atomoPE2.getEn1(), atomoPE2.getEn2(), atomoPE2.getEn3(), atomoPE2.getEn4(), atomoPE2.getEn5(), atomoPE2.getEn6(), atomoPE2.getEn7(), atomoPE2.getEn8());
                                 }
                                 if(controlador3.getUnir()){
-                                    if(!(aUnir.contains(atomoPE))){
+                                    int j=0;
+                                    for(int i=0;i<aUnir.size();i++){
+                                            if(aUnir.get(i).getId()==atomoPE.getId()){
+                                                j+=1;       
+                                            }
+                                    
+                                    }  
+                                    System.out.println(j);
+                                    System.out.println(idnum);
+                                    if(j==0){
                                         aUnir.add(atomoPE);
                                     }
-                                    
-                               
+                                    j=0;
                                     eventospanel.union(root, aUnir);
                                     
                                 }

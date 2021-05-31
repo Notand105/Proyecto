@@ -27,8 +27,9 @@ public class Objet {
     private Arc en8=new Arc();
     private Label label=new Label();
     private Line  line=new Line();
+    private int id;
     
-    public Objet(Arc arco,Arc en1,Arc en2,Arc en3,Arc en4,Arc en5,Arc en6,Arc en7,Arc en8,Label label,Line line){
+    public Objet(Arc arco,Arc en1,Arc en2,Arc en3,Arc en4,Arc en5,Arc en6,Arc en7,Arc en8,Label label,Line line,int id){
         this.arco=arco;
         this.en1=en1;
         this.en2=en2;
@@ -40,6 +41,7 @@ public class Objet {
         this.en8=en8;
         this.label=label;
         this.line=line;
+        this.id=id;
     }
 
     public Arc getArco() {
@@ -84,6 +86,14 @@ public class Objet {
 
     public Line getLine() {
         return line;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
     }
     
     

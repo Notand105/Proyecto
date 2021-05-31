@@ -1,6 +1,10 @@
 package modelo;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 
 public class Enlaces {
@@ -75,4 +79,29 @@ public class Enlaces {
 
     }
 
+    public void mandarEnlaces(Arc en1, Arc en2, Arc en3, Arc en4, Arc en5, Arc en6, Arc en7, Arc en8, Pane pane, Arc arco) {   
+        trabajarEnlaces(en1);
+        trabajarEnlaces(en2);
+        trabajarEnlaces(en3);
+        trabajarEnlaces(en4);
+        trabajarEnlaces(en5);
+        trabajarEnlaces(en6);
+        trabajarEnlaces(en7);
+        trabajarEnlaces(en8);     
+    }
+    
+    public void trabajarEnlaces(Arc en1){
+        
+        en1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            public void handle(MouseEvent mouseEvent) {
+                int ndeAtomos=0;
+                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                    en1.setFill(Color.RED);
+                }
+                
+            }
+        });   
+    }
+    
 }

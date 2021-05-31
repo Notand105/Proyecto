@@ -283,11 +283,16 @@ public class Eventospanel {
                 linea.setStartY(x2);
                 linea.setEndX(x2);
                 linea.setEndY(y2);
+                //root.getChildren().add(linea);
                 
             }
             
         });
     }
-
+    
+   
+    
+   
+    
 }
 
