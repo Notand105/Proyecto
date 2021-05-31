@@ -7,14 +7,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Line;
 import prueba.Prueba;
-
+import modelo.Objet;
 /**
  *
  * @author Fernando
  */
+
+
 public class Atomos {
+     class Measure {
+                    double x, y;
+
+                 public Measure() {
+                      x = 0; y = 0;
+            }
+        }
+
         Line punto= new Line();
-       public void MovAtomo(Node arco, Node label, Line line,ArrayList<Arc> atomos,Node en1,Node en2,Node en3,Node en4,Node en5,Node en6,Node en7,Node en8, Line l1, Line l2, Line l3, Line l4, Line l5, Line l6, Line l7, Line l8) {
+       public void MovAtomo(Node arco, Node label, Line line,Node en1,Node en2,Node en3,Node en4,Node en5,Node en6,Node en7,Node en8) {
 
         final Measure dragMeasure = new Measure();
         final Measure position = new Measure();
@@ -47,23 +57,7 @@ public class Atomos {
             label.setTranslateX(position.x);
             label.setTranslateY(position.y);
             line.setTranslateX(position.x);
-            line.setTranslateY(position.y);
-            l1.setTranslateX(position.x);
-            l1.setTranslateY(position.y);
-            l2.setTranslateX(position.x);
-            l2.setTranslateY(position.y);
-            l3.setTranslateX(position.x);
-            l3.setTranslateY(position.y);
-            l4.setTranslateX(position.x);
-            l4.setTranslateY(position.y);
-            l5.setTranslateX(position.x);
-            l5.setTranslateY(position.y);
-            l6.setTranslateX(position.x);
-            l6.setTranslateY(position.y);
-            l7.setTranslateX(position.x);
-            l7.setTranslateY(position.y);
-            l8.setTranslateX(position.x);
-            l8.setTranslateY(position.y);
+            line.setTranslateY(position.y);          
             punto.setStartX(line.getEndX());
             punto.setStartY(line.getEndY());
             punto.setEndX(line.getEndX());
@@ -71,14 +65,7 @@ public class Atomos {
             punto.setStrokeWidth(4);
             punto.setStroke(line.getStroke());
             int i=0;
-            while(i<atomos.size()){
-                if (punto.intersects(atomos.get(i).getBoundsInLocal())) {
-                    line.setEndX(atomos.get(i).getLayoutX());
-                    line.setEndY(atomos.get(i).getLayoutY());
-                    line.setFill(Color.RED);
-                }
-                i++;
-            }
+
             
 
         });
@@ -86,12 +73,58 @@ public class Atomos {
             arco.setOnMouseEntered(mouseEvent -> arco.setCursor(Cursor.HAND));
         }
          
-                
-                class Measure {
-                    double x, y;
+       public void MovGroup( Arc arco, ArrayList<Objet> AtomosGroup) {
 
-                 public Measure() {
-                      x = 0; y = 0;
+        final Measure dragMeasure = new Measure();
+        final Measure position = new Measure();
+        arco.setOnMousePressed(mouseEvent -> {
+            dragMeasure.x = mouseEvent.getSceneX() - position.x;
+            dragMeasure.y = mouseEvent.getSceneY() - position.y;
+            arco.setCursor(Cursor.MOVE);
+        });
+        arco.setOnMouseDragged(mouseEvent -> {
+            position.x = mouseEvent.getSceneX() - dragMeasure.x;
+            position.y = mouseEvent.getSceneY() - dragMeasure.y;
+            arco.setTranslateX(position.x);
+            arco.setTranslateY(position.y);
+            int i=0;
+            while (i<AtomosGroup.size()){
+                AtomosGroup.get(i).getArco().setTranslateX(position.x);
+                AtomosGroup.get(i).getArco().setTranslateY(position.y);
+                
+                AtomosGroup.get(i).getEn1().setTranslateX(position.x);
+                AtomosGroup.get(i).getEn1().setTranslateY(position.y);
+                
+                AtomosGroup.get(i).getEn2().setTranslateX(position.x);
+                AtomosGroup.get(i).getEn2().setTranslateY(position.y);
+                
+                AtomosGroup.get(i).getEn3().setTranslateX(position.x);
+                AtomosGroup.get(i).getEn3().setTranslateY(position.y);
+                
+                AtomosGroup.get(i).getEn4().setTranslateX(position.x);
+                AtomosGroup.get(i).getEn4().setTranslateY(position.y);
+                
+                AtomosGroup.get(i).getEn5().setTranslateX(position.x);
+                AtomosGroup.get(i).getEn5().setTranslateY(position.y);
+                
+                AtomosGroup.get(i).getEn6().setTranslateX(position.x);
+                AtomosGroup.get(i).getEn6().setTranslateY(position.y);
+                
+                AtomosGroup.get(i).getEn7().setTranslateX(position.x);
+                AtomosGroup.get(i).getEn7().setTranslateY(position.y);
+                
+                AtomosGroup.get(i).getEn8().setTranslateX(position.x);
+                AtomosGroup.get(i).getEn8().setTranslateY(position.y);
+                AtomosGroup.get(i).getLabel().setTranslateX(position.x);
+                AtomosGroup.get(i).getLabel().setTranslateY(position.y);
+                i=i+1;
+            
             }
+            
+        });
+            arco.setOnMouseReleased(mouseEvent -> arco.setCursor(Cursor.HAND));
+            arco.setOnMouseEntered(mouseEvent -> arco.setCursor(Cursor.HAND));
         }
-}
+       
+                
+}         
